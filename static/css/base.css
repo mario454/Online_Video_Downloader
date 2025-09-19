@@ -1,0 +1,417 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+}
+
+body {
+   background-image: url('/static/images/background.png'); 
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+
+@media (max-width: 480px) {
+    body {
+        animation: gradientMove 30s ease infinite;
+    }
+
+}
+
+header {
+    margin-top: 30px;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#video_header {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 780px) {
+    header {
+        font-size: larger;
+        font-weight: bold;
+        display: flex;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: medium;
+        font-weight: bold;
+        display: flex;
+        justify-self: center;
+    }
+
+}
+
+main {
+    width: 600px;
+    margin: 20px auto;
+    /* center horizontally */
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 480px) {
+    main {
+        width: 380px;
+        margin: 20px auto;
+        /* center horizontally */
+        padding: 10px;
+    }
+}
+
+#video_downloader {
+    display: flex;
+    justify-self: center;
+    width: 100%;
+}
+
+#video_downloader table {
+    width: 100%;
+}
+
+#video_downloader table td {
+    padding: 5px;
+    margin: 0;
+}
+
+#video_downloader table td {
+    width: fit-content;
+    color: #661d1d;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    width: 100%;
+    max-height: 30px;
+}
+
+#url-format-yb {
+    display: flex;
+}
+
+#video_downloader table input[type="text"] {
+    width: 70%;
+    height: 35px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 1px 1px 5px gray;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-right: 0;
+    margin-bottom: 10px;
+    flex: 3;
+}
+
+@media (max-width: 480px) {
+    #video_downloader table input[type="text"] {
+        width: 50%;
+        font-size: 14px;
+        flex: 3;
+    }
+}
+
+#video_downloader table select,
+#video_downloader table option {
+    flex: 1;
+    cursor: pointer;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    outline: none;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 1px 1px 5px gray;
+    padding: 5px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    background: white;
+}
+
+#video_downloader table input[type="text"]:focus,
+#video_downloader table select:focus {
+    border-color: #FF0000;
+    box-shadow: 0 0 5px rgba(97, 42, 42, 0.7);
+}
+
+@media (max-width: 480px) {
+
+    #video_downloader table select,
+    #video_downloader table option {
+        flex: none;
+        font-size: 14px;
+        padding: 0px;
+    }
+}
+
+
+#video_downloader table #search {
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    align-self: center;
+    filter: drop-shadow(1px 5px 5px gray);
+    margin-left: 5px;
+    margin-top: 5px;
+    transition: transform ease 0.2s;
+    background: #FF0000;
+}
+
+#video_downloader table #search:hover {
+    background: #cc0000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+    #video_downloader table #search {
+        margin-left: 5px;
+    }
+}
+
+#cover {
+    width: 500px;
+    height: 300px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+.download,
+#progress-cancel a {
+    width: fit-content;
+    height: 30px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #FF0000;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.download:hover,
+#progress-cancel a:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+}
+
+#progress-cancel a {
+    text-decoration: none;
+    height: 20px;
+}
+
+@media (max-width: 480px) {
+
+    .download{
+        padding: 4px 10px;
+    }
+
+    #progress-cancel a {
+        padding: 4px 10px;
+        font-size: 14px;
+    }
+}
+
+
+/* To act Like table by using list in list.html in menu app*/
+.list-table {
+    list-style-type: none;
+    width: 70%;
+    align-self: center;
+    justify-self: center;
+
+    li {
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: -10px;
+        box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-header {
+        background-color: #e5eaeb;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .table-row {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .table-row:hover {
+        background-color: #f5f0f0;
+    }
+
+    .col {
+        display: flex;
+        justify-content: center;
+    }
+
+    .col-1 {
+        flex-basis: 33%;
+    }
+
+    .col-2 {
+        flex-basis: 33%;
+    }
+
+    .col-3 {
+        flex-basis: 34%;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    /* To act Like table by using list in list.html in menu app*/
+    .list-table {
+        .table-header {
+            font-size: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        .table-row {
+            font-size: medium;
+        }
+
+        .col-3 {
+            flex-basis: 34%;
+        }
+
+    }
+}
+
+
+#progress-cancel {
+    width: 80%;
+    height: 30px;
+    display: none;
+    justify-self: center;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+#progress-cancel div{
+        display: inline;
+}
+
+#progress-cancel label {
+    color: #661d1d;
+    font-size: large;
+    font-weight: bold;
+}
+
+#progress-cancel progress {
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    appearance: none;
+    box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.685);
+}
+
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #FF0000;
+    /* red for YouTube style */
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+progress::-moz-progress-bar {
+    background-color: #FF0000;
+    border-radius: 10px;
+}
+
+#progress-text {
+    position: relative;
+    left: -30%;
+    font-weight: bold;
+    color: rgb(65, 63, 63);
+    /* contrast with bar */
+}
+
+
+
+@media (max-width: 780px) {
+    #progress-cancel {
+        width: 80%;
+        justify-self: center;
+    }
+    #progress-text {
+        left: -30%;
+    }
+}
+
+@media (max-width: 480px) {
+    #progress-cancel {
+        width: 90%;
+    }
+    #progress-cancel div{
+        flex: 2;
+    }
+
+    #progress-cancel label {
+       font-size: small;
+    }
+
+    #progress-cancel progress {
+        height: 18px;
+    }
+
+    #progress-text {
+        font-size: 12px;
+        left: -33%;
+    }
+}
+
+
+footer {
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+    padding: 10px;
+}
+
+/* Normal height */
+.footer_normal {
+    position: absolute;
+    bottom: 0;
+    left: 50vw;
+    transform: translateX(-50%);
+}
+
+/* scroll */
+.footer_exceed {
+    margin-top: auto;
+}

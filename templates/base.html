@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Video Downloader{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+
+<body>
+    <header>
+        {% block header %}
+        <h1 id="video_header">
+            Online Video Downloader
+        </h1>
+        {% endblock %}
+    </header>
+    <main>
+        {% block content %}
+        <form method="POST" id="video_downloader">
+            <table>
+                <tr>
+                    <td colspan="2" id="url-format-yb">
+                        <input type="text" name="url" id="url" required value="{% if url%} {{url}} {% endif %}"
+                            placeholder="Video URL">
+                        <select name="choice" id="choice" required>
+                            <option value="" disabled {% if not choice %} selected {% endif %}>Select format</option>
+                            <option value="mp3" {% if choice=='mp3' %} selected {% endif %}>MP3 (Audio)</option>
+                            <option value="mp4" {% if choice=='mp4' %} selected {% endif %}>MP4 (Video)</option>
+                        </select>
+                        <input type="image" src="{{ url_for('static', filename='images/search.png') }}" alt="search"
+                            name="search" id="search">
+                    </td>
+                {% if error %}
+                <tr>
+                    <td>
+                        <div>{{error}}</div>
+                    </td>
+                </tr>
+                {% endif %}
+                </tr>
+                {% if url and not error%}
+                <tr>
+                    <td colspan="2">
+                        <img src="{{ url_for('static', filename='cover.jpg') }}" id="cover">
+                        <p id="title">{{info.title}}</p>
+                        {% if choice == 'mp3' %}
+                        {% if not title == '' %}
+                        {% if not info.size == 0%}
+                        <p>Size: {{info.size}}MB</p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
+                        <input type="submit" value="Download" name="downloadmp3" class="download">
+                        {% else %}
+                        <p>Cannot Download it {{title}} ok</p>
+                        {% endif %}
+                        {% endif %}
+
+                        {% if choice == 'mp4' %}
+                        {% if info.res_size %}
+                        <ul class="list-table">
+                            <li id="header-row" class="table-header">
+                                <p class="col col-1">Resolution</p>
+                                <p class="col col-2">Size</p>
+                                <p class="col col-3">Download</p>
+                            </li>
+                            {% for rs in info.res_size.keys() %}
+                            <li class="table-row">
+                                <p class="col col-1">{{rs}}</p>
+                                {% if not info.res_size[rs] == 0 %}
+                                <p class="col col-2">{{info.res_size[rs]}}MB</p>
+                                {% else %}
+                                <p class="col col-2"></p>
+                                {% endif %}
+                                <p class="col col-3"><input type="submit" value="Download" name="download{{rs}}"
+                                        class="download"></p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>Cannot download it</p>
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </form>
+        <form method="POST" id="progress-cancel">
+            <div>
+                <label for="download_prog">Downloading:</label>
+                <progress id="download_prog" value="0" max="100"></progress>
+                <span id="progress-text">0%</span>
+            </div>
+            <a href="#" id="cancel" data-url="{{ url_for('cancel') }}">Cancel</a>
+        </form>
+        {% endblock %}
+    </main>
+
+    <footer class="footer_normal" id="footer">
+        <p>&copy; 2025 Video Downloader | V1.0</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/ads.js')}}"></script>
+</body>
+
+</html>
