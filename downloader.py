@@ -4,8 +4,7 @@ import os
 import re
 import unicodedata
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FFMPEG_DIR = os.path.join(BASE_DIR, "bin")
+
 
 # Progress data and cancel downloading
 progress_data = {"progress": 0, "cancel": False}
@@ -168,3 +167,4 @@ def download_mp4(url, video_qual, title):
         cover_path = os.path.join("static", "cover.jpg")
         if os.path.exists(cover_path):
             os.remove(cover_path)
+
