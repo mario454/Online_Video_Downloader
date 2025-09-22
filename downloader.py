@@ -3,33 +3,9 @@ import requests
 import os
 import re
 import unicodedata
-import zipfile
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FFMPEG_DIR = os.path.join(BASE_DIR, "bin")
-FFMPEG_URL = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
-
-def setup_ffmpeg():
-    if not os.path.exists(os.path.join(FFMPEG_DIR, "ffmpeg.exe")):
-        os.makedirs(FFMPEG_DIR, exist_ok=True)
-        print("Downloading FFmpeg...")
-        r = requests.get(FFMPEG_URL, stream=True)
-        zip_path = os.path.join(FFMPEG_DIR, "ffmpeg.zip")
-        with open(zip_path, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-        print("Extracting FFmpeg...")
-        with zipfile.ZipFile(zip_path, "r") as zip_ref:
-            zip_ref.extractall(FFMPEG_DIR)
-        os.remove(zip_path)
-
-    # البحث عن ffmpeg.exe داخل المجلد
-    for root, dirs, files in os.walk(FFMPEG_DIR):
-        if "ffmpeg.exe" in files:
-            return root
-    return FFMPEG_DIR
-
-FFMPEG_DIR = setup_ffmpeg()
 
 # Progress data and cancel downloading
 progress_data = {"progress": 0, "cancel": False}
